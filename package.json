@@ -1,0 +1,36 @@
+{
+  "name": "scoped-action-generator",
+  "version": "1.0.0",
+  "description": "A function to automatically create Redux scoped actions and creators",
+  "main": "lib/scoped-action-generator.min.js",
+  "scripts": {
+    "test": "npx jest --watch",
+    "test:ci": "jest test --ci --testResultsProcessor='jest-junit'",
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dariorinaldi/scoped-action-generator.git"
+  },
+  "author": "Dario Rinaldi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dariorinaldi/scoped-action-generator/issues"
+  },
+  "homepage": "https://github.com/dariorinaldi/scoped-action-generator#readme",
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-jest": "22.4.3",
+    "babel-loader": "7.1.4",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.6.1",
+    "husky": "0.14.3",
+    "jest": "22.4.3",
+    "jest-junit": "^4.0.0",
+    "uglifyjs-webpack-plugin": "1.2.5",
+    "webpack": "4.8.3",
+    "webpack-cli": "2.1.3"
+  }
+}

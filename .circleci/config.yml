@@ -1,0 +1,27 @@
+version: 2.0
+jobs:
+  build:
+    docker: 
+      - image: circleci/node:4.8.2
+    parallelism: 2
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Get dependencies
+          command: npm i
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Run tests
+          command: npm run test:ci
+          environment:
+            JEST_JUNIT_OUTPUT: "test-results.xml"
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_test_results:
+          path: test-results.xml
