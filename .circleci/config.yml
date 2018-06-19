@@ -1,4 +1,16 @@
 version: 2.0
+environment:
+    CC_TEST_REPORTER_ID: 63dc0b387c0eea5ddb2549abb813f978783da00495992d3a8ecaff7f69fdfa6a
+dependencies:
+  post:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+test:
+  pre:
+    - ./cc-test-reporter before-build
+
+  post:
+    - ./cc-test-reporter after-build --exit-code $EXIT_CODE
 jobs:
   build:
     docker: 
