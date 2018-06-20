@@ -5,9 +5,9 @@ const creator = type => payload => {
   return { type, payload };
 };
 
-const createResultDescriptor = result => ({
-  type: `${actionTypes[curr]}_${result}`,
-  create: creator(`${actionTypes[curr]}_${success}`)
+const createResultDescriptor = (action, result) => ({
+  type: `${action}_${result}`,
+  create: creator(`${action}_${result}`)
 });
 
 const createActionDescriptors = actionTypes => {
@@ -15,8 +15,11 @@ const createActionDescriptors = actionTypes => {
     (acc, curr) => ({
       ...acc,
       [curr]: { type: actionTypes[curr], create: creator(actionTypes[curr]) },
-      [`${curr}_${SUCCESS}`]: createResultDescriptor(SUCCESS),
-      [`${curr}_${ERROR}`]: createResultDescriptor(ERROR)
+      [`${curr}_${SUCCESS}`]: createResultDescriptor(
+        actionTypes[curr],
+        SUCCESS
+      ),
+      [`${curr}_${ERROR}`]: createResultDescriptor(actionTypes[curr], ERROR)
     }),
     {}
   );
