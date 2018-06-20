@@ -1,7 +1,7 @@
 # scoped-action-generator
 A function to automatically create Redux scoped actions and creators
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/b25fd10bf3b959010821/maintainability)](https://codeclimate.com/github/dariorinaldi/scoped-action-generator/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/40c271cc6c2d37d8f72d/maintainability)](https://codeclimate.com/github/dariorinaldi/scoped-action-generator/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/40c271cc6c2d37d8f72d/test_coverage)](https://codeclimate.com/github/dariorinaldi/scoped-action-generator/test_coverage)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
