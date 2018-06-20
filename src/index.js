@@ -1,14 +1,17 @@
-import { basename, join } from "path";
-import getScopedActions from "./getScopedActions";
-import getDirectories from "./getDirectories";
+import createActionDescriptors from "./createActionDescriptors";
+import { join } from "path";
 
-const generateActions = (sourceDir, actionFile = "actions.js") => {
-  return getDirectories(sourceDir).reduce((accum, dir) => {
-    const scope = basename(dir).toUpperCase();
-    const unscopedActions = require(join(dir, actionFile)).default;
-    const actions = getScopedActions(scope, unscopedActions);
-
-    return { ...accum, [scope]: { ...actions } };
+const generateActions = (path, features) => {
+  return features.reduce(async (accum, feat) => {
+    const scope = feat.toUpperCase();
+    const actionsPath = join(path, feat, "actions.js");
+    try {
+      const featActions = await import(actionsPath);
+      const actions = createActionDescriptors(scope, featActions.default);
+      return { ...(await accum), [scope]: { ...actions } };
+    } catch (error) {
+      console.error(error);
+    }
   }, {});
 };
 

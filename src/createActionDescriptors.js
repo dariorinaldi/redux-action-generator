@@ -5,21 +5,30 @@ const creator = type => payload => {
   return { type, payload };
 };
 
-const createResultDescriptor = (action, result) => ({
-  type: `${action}_${result}`,
-  create: creator(`${action}_${result}`)
-});
+const createResultDescriptor = (scope, action, result) => {
+  const value = `${action}_${result}`;
+  const type = scope ? `${scope}/${value}` : value;
+  return {
+    type,
+    create: creator(type)
+  };
+};
 
-const createActionDescriptors = actionTypes => {
+const createActionDescriptors = (scope, actionTypes) => {
   return Object.keys(actionTypes).reduce(
     (acc, curr) => ({
       ...acc,
       [curr]: { type: actionTypes[curr], create: creator(actionTypes[curr]) },
       [`${curr}_${SUCCESS}`]: createResultDescriptor(
+        scope,
         actionTypes[curr],
         SUCCESS
       ),
-      [`${curr}_${ERROR}`]: createResultDescriptor(actionTypes[curr], ERROR)
+      [`${curr}_${ERROR}`]: createResultDescriptor(
+        scope,
+        actionTypes[curr],
+        ERROR
+      )
     }),
     {}
   );

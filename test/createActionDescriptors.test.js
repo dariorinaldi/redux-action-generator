@@ -7,7 +7,7 @@ const fakeActions = {
 
 describe("createActionDescriptors", () => {
   it("GIVEN a object with all the default actions THEN it should return a new object with success an error actions", () => {
-    const actionDescriptors = createActionDescriptors(fakeActions);
+    const actionDescriptors = createActionDescriptors("MYSCOPE", fakeActions);
 
     expect(actionDescriptors.ACTION_1).toBeDefined();
     expect(actionDescriptors.ACTION_1_SUCCESS).toBeDefined();
